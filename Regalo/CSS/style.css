@@ -1,0 +1,140 @@
+:root {
+    --box-red: #d62828;       /* Rojo Navidad */
+    --ribbon-gold: #ffb703;   /* Dorado/Amarillo */
+    --primary-green: #1b4332;
+    --soft-white: #f8fdfa;
+}
+
+body, html {
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* --- ESCENA DEL REGALO --- */
+.overlay {
+    position: fixed; inset: 0;
+    background: radial-gradient(circle, #e63946, #450a0a); /* Fondo rojizo festivo */
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000; transition: opacity 1s ease;
+}
+
+.gift-box-container {
+    width: 150px; height: 150px;
+    position: relative;
+    margin: 0 auto 50px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+.gift-box-container:hover { transform: scale(1.05); }
+
+/* CUERPO DE LA CAJA */
+.gift-body {
+    width: 150px; height: 120px;
+    background: var(--box-red);
+    position: absolute; bottom: 0; left: 0;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    z-index: 1;
+}
+
+/* TAPA DE LA CAJA */
+.gift-lid {
+    width: 170px; height: 40px; /* Un poco más ancha que el cuerpo */
+    background: #c1121f; /* Un rojo un poco más oscuro para contraste */
+    position: absolute; top: -10px; left: -10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 2;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* CINTAS (RIBBONS) */
+.ribbon-vertical {
+    position: absolute;
+    background: var(--ribbon-gold);
+    width: 25px; height: 100%;
+    left: 50%; transform: translateX(-50%);
+}
+.ribbon-horizontal {
+    position: absolute;
+    background: var(--ribbon-gold);
+    width: 100%; height: 25px;
+    top: 50%; transform: translateY(-50%);
+}
+
+/* EL MOÑO (BOW) */
+.bow-left, .bow-right {
+    position: absolute;
+    width: 50px; height: 50px;
+    border: 5px solid var(--ribbon-gold);
+    border-radius: 50% 50% 0 50%;
+    top: -40px; z-index: 3;
+}
+.bow-left { left: 35px; transform: rotate(-30deg); }
+.bow-right { right: 35px; transform: rotate(120deg); }
+.bow-center {
+    position: absolute;
+    width: 15px; height: 15px;
+    background: var(--ribbon-gold);
+    border-radius: 50%;
+    top: -15px; left: 50%; transform: translateX(-50%);
+    z-index: 4;
+}
+
+/* ANIMACIÓN AL ABRIR */
+.gift-box-container.open .gift-lid {
+    transform: translateY(-100px) rotate(-10deg);
+    opacity: 0;
+}
+.gift-box-container.open .gift-body {
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.8s ease;
+}
+
+/* --- SLIDER Y CENTRADO --- */
+.horizontal-slider {
+    display: flex;
+    width: 600vw; 
+    height: 100vh;
+    transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1);
+    background: linear-gradient(135deg, #d8f3dc, #fff); /* Fondo verde menta suave */
+}
+
+.slide {
+    width: 100vw; height: 100vh;
+    display: flex;
+    justify-content: center; align-items: center;
+    flex-shrink: 0;
+}
+
+.slide-content {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    text-align: center;
+    width: 90%; max-width: 450px;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid #e9ecef;
+}
+
+.slide-content img {
+    width: 100%; max-height: 45vh;
+    object-fit: cover; border-radius: 15px;
+    margin: 15px 0;
+}
+
+/* --- TEXTOS Y DETALLES --- */
+#gift-text { color: white; margin-top: 20px; font-family: 'Dancing Script', cursive; font-size: 2rem; }
+.badge { background: var(--box-red); color: white; padding: 5px 10px; border-radius: 15px; font-size: 0.8rem; }
+.hidden { display: none; }
+.fade-out { opacity: 0; pointer-events: none; }
+.final-slide { background: var(--primary-green) !important; color: white; }
+.final-slide .slide-content { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); color: white; border: none; }
+#counter-fixed { position: fixed; top: 0; width: 100%; text-align: center; padding: 10px; background: rgba(255,255,255,0.9); z-index: 50; color: var(--primary-green); font-weight: bold; }
+.typewriter { min-height: 80px; font-size: 1.1rem; line-height: 1.5; }
+.btn-retro { background: var(--ribbon-gold); border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; margin-top: 15px; }
