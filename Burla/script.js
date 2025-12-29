@@ -67,7 +67,8 @@ finalTrigger.addEventListener('click', () => {
     // 2. Esperar a que termine la animación (1.5s) y redirigir
     setTimeout(() => {
         // Asegúrate de que el nombre del archivo sea exacto
-        window.location.href = "../Regalo/I love you babe.html"; 
+        window.location.href = "/Regalo/I love you babe.html"; 
     }, 1500);
 
 });
+
